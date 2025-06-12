@@ -90,6 +90,11 @@ class Agent:
         self.request = packet.request
         if packet.info:
             self.info = packet.info
+            #追加 
+            if self.info.agent is not None:
+                self.agent_name = self.info.agent
+            if self.info.profile is not None:
+                self.agent_profile = self.info.profile
         if packet.setting:
             self.setting = packet.setting
         if packet.talk_history:
