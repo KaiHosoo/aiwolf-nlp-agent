@@ -22,10 +22,6 @@ class Seer(Agent):
 
     def talk(self) -> str:
         """トークリクエストに対する応答を返す."""
-        return super().talk()
-
-    def divine(self) -> str:
-        """占いリクエストに対する応答を返す."""
         print("My name", self.agent_name) # 自分の名前
         print("My profile" , self.agent_profile) # 自分のプロフィール
         print("talk_history", self.talk_history) # 対話履歴
@@ -33,7 +29,11 @@ class Seer(Agent):
         print("alive agents", self.get_alive_agents()) # 生存エージェント
         print("vote_list", self.info.vote_list) # 投票リスト
         print("info", self.info) # 全体の情報
-            
+        
+        return super().talk()
+
+    def divine(self) -> str:
+        """占いリクエストに対する応答を返す."""            
         return super().divine()
 
     def vote(self) -> str:
