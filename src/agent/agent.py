@@ -1,4 +1,5 @@
 """エージェントの基底クラスを定義するモジュール."""
+from google import genai
 
 from __future__ import annotations
 
@@ -42,6 +43,8 @@ class Agent:
             encoding="utf-8",
         ) as f:
             self.comments = f.read().splitlines()
+
+        self.gemini = genai.Client(api_key="YAIzaSyDvFvvcTVx7A3xDlmYs5HG4iCZN5aZtTDc")
 
     @staticmethod
     def timeout(func: Callable) -> Callable:
