@@ -36,7 +36,7 @@ class Agent:
         self.talk_history: list[Talk] = []
         self.whisper_history: list[Talk] = []
         self.role = role
-
+        self.agent_profile = ""
         self.comments: list[str] = []
         with Path.open(
             Path(str(self.config["path"]["random_talk"])),
@@ -44,7 +44,6 @@ class Agent:
         ) as f:
             self.comments = f.read().splitlines()
 
-        self.gemini = genai.Client(api_key="YAIzaSyDvFvvcTVx7A3xDlmYs5HG4iCZN5aZtTDc")
 
     @staticmethod
     def timeout(func: Callable) -> Callable:
@@ -114,6 +113,13 @@ class Agent:
         if not self.info:
             return []
         return [k for k, v in self.info.status_map.items() if v == Status.ALIVE]
+
+    def get_most_suspicious(self) -> str | None:
+            alive = self.get_alive_agents()
+            alive = [a for a in alive if a != self.agent_name]
+            if not alive:
+                return None
+            return random.choice(alive)
 
     def name(self) -> str:
         """名前リクエストに対する応答を返す."""
