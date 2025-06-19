@@ -1,11 +1,11 @@
 """エージェントの基底クラスを定義するモジュール."""
-from google import genai
 
 from __future__ import annotations
 
 import random
 from pathlib import Path
 from typing import TYPE_CHECKING
+from google import genai
 
 from aiwolf_nlp_common.packet import Info, Packet, Request, Role, Setting, Status, Talk
 
